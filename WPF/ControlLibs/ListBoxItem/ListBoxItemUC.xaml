@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="Ji.WPFHelper.ControlLibs.ListBoxItemUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Ji.WPFHelper.ControlLibs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Border x:Name="borderMain">
+        <Grid>
+
+            <TextBlock
+                x:Name="textblock"
+                VerticalAlignment="Center"
+                Text="{Binding Path=Text, ElementName=TextBoxReNameUC}"
+                TextAlignment="Left" />
+            <!--
+                Visibility="{Binding IsEditor,
+                RelativeSource={RelativeSource AncestorType=UserControl},
+                Converter={x:Static local:ReNameVisibilityConverter.Converter},
+                ConverterParameter=TextBlock}"
+            -->
+            <!--<local:TextBoxReNameUC x:Name="TextBoxReNameUC"
+                                   Height="20"
+                                   VerticalAlignment="Center"
+                                   Background="Transparent"
+                                   BorderThickness="1,1,0,0"
+                                   Foreground="Black"
+                                   ParentUC="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                   Text="{Binding Item.Name,
+                                                  RelativeSource={RelativeSource AncestorType=UserControl},
+                                                  Mode=OneWay}"
+                                   TextAlignment="Left" />-->
+            <!--
+                Visibility="{Binding IsEditor,
+                RelativeSource={RelativeSource AncestorType=UserControl},
+                Converter={x:Static local:ReNameVisibilityConverter.Converter},
+                ConverterParameter=TextBox}"
+            -->
+            <!--
+                此项能够在骨骼的结构树中添加 显示 锁定 按钮
+                {Binding Path=ActualHeight,ElementName=textblock}
+                <ContentPresenter Margin="{Binding ContentMargin,RelativeSource={RelativeSource AncestorType=UserControl}}"  HorizontalAlignment="Right" Content="{Binding Item.Content,RelativeSource={RelativeSource AncestorType=UserControl},Mode=OneWay}" />
+            -->
+        </Grid>
+    </Border>
+</UserControl>

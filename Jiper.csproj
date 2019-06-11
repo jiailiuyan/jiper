@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C993CE01-EBD0-4374-B15B-C84187F00337}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jiper</RootNamespace>
+    <AssemblyName>Jiper</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug NET451</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CA1060,CA1401</NoWarn>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\..\Releases\x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\System.Windows.Interactivity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\IOHelper.cs" />
+    <Compile Include="Actions\TaskHelper.cs" />
+    <Compile Include="Actions\ThreadPoolHelper.cs" />
+    <Compile Include="Attributes\JiptionAttribute.cs" />
+    <Compile Include="Attributes\OrderDescCatalogAttribute.cs" />
+    <Compile Include="Attributes\OrderDescriptionAttribute.cs" />
+    <Compile Include="Authentication\GoogleAuthenticator.cs" />
+    <Compile Include="Authentication\JsEncryptUtils.cs" />
+    <Compile Include="Data\ChineseCalendar.cs" />
+    <Compile Include="Data\ExtensionAttach.cs" />
+    <Compile Include="Data\FormateHelper.cs" />
+    <Compile Include="Data\Mapping\Copier.cs" />
+    <Compile Include="Data\Mapping\Core\CreateConfig.cs" />
+    <Compile Include="Data\Mapping\Core\MapperConfiguration.cs" />
+    <Compile Include="Data\Mapping\Core\MapperConfigurationBase.cs" />
+    <Compile Include="Data\Mapping\Core\MapperConfigurationCollectionContainer.cs" />
+    <Compile Include="Data\Mapping\Core\PropertiesNotMapped.cs" />
+    <Compile Include="Data\Mapping\Core\TypePairMapper.cs" />
+    <Compile Include="Data\Mapping\Exceptions\MapperExceptionBase.cs" />
+    <Compile Include="Data\Mapping\Exceptions\MapperExistException.cs" />
+    <Compile Include="Data\Mapping\Exceptions\MapperNotInitializedException.cs" />
+    <Compile Include="Data\Mapping\Exceptions\NoActionAfterMappingException.cs" />
+    <Compile Include="Data\Mapping\Exceptions\NoFoundMapperException.cs" />
+    <Compile Include="Data\Mapping\Exceptions\NotSameTypePropertyException.cs" />
+    <Compile Include="Data\Mapping\Exceptions\PropertyNoExistException.cs" />
+    <Compile Include="Data\Mapping\Exceptions\ReadOnlyPropertyException.cs" />
+    <Compile Include="Data\Mapping\ExpressionCpoier.cs" />
+    <Compile Include="Data\Mapping\ExpressionMapper.cs" />
+    <Compile Include="Data\Mapping\Extensions\ExpressionExtentions.cs" />
+    <Compile Include="Data\Mapping\Extensions\QueryableExtentions.cs" />
+    <Compile Include="Data\Mapping\Helper\MapperHelper.cs" />
+    <Compile Include="Data\Mapping\Helper\TypeSystem.cs" />
+    <Compile Include="Data\Mapping\Visitor\ChangParameterExpressionVisitor.cs" />
+    <Compile Include="Data\Mapping\Visitor\ConverterExpressionVisitor.cs" />
+    <Compile Include="Data\Mapping\Visitor\MapperExpressionVisitor.cs" />
+    <Compile Include="Data\Mapping\Visitor\PropertiesVisitor.cs" />
+    <Compile Include="FSHelper\AsposeLicense.cs" />
+    <Compile Include="Helpers\EMailHelper.cs" />
+    <Compile Include="Http\Tasker\Params\NameValuePair.cs" />
+    <Compile Include="Base\NameValuePair.cs" />
+    <Compile Include="Base\PluginLoader.cs" />
+    <Compile Include="Data\BinaryFormatterHelper.cs" />
+    <Compile Include="Data\IniHelper.cs" />
+    <Compile Include="Data\IntHelper.cs" />
+    <Compile Include="Data\JsonHelper.cs" />
+    <Compile Include="Data\TimeHelper.cs" />
+    <Compile Include="Data\UrlHelper.cs" />
+    <Compile Include="Exceptions\TipMessageException.cs" />
+    <Compile Include="Helpers\AttributeExtend.cs" />
+    <Compile Include="Helpers\BitmapImageHelper.cs" />
+    <Compile Include="Helpers\CollectionExtension.cs" />
+    <Compile Include="Helpers\ComparerHelper.cs" />
+    <Compile Include="Helpers\DateTimeExtension.cs" />
+    <Compile Include="Helpers\DeepCloneableExtension.cs" />
+    <Compile Include="Helpers\DelayNotification.cs" />
+    <Compile Include="Helpers\DependencyObjectExtend.cs" />
+    <Compile Include="Helpers\DesignerHelper.cs" />
+    <Compile Include="Helpers\DispatcherHelper.cs" />
+    <Compile Include="Helpers\FrameworkElementHelper.cs" />
+    <Compile Include="Helpers\ListHelper.cs" />
+    <Compile Include="Helpers\PowerHelper.cs" />
+    <Compile Include="Helpers\ObjectHelpers.cs" />
+    <Compile Include="Http\ConnectHelper.cs" />
+    <Compile Include="Image\ImageHelper.cs" />
+    <Compile Include="Info\FontHelper.cs" />
+    <Compile Include="Input\MouseExtension.cs" />
+    <Compile Include="Linq\EqualityHelper.cs" />
+    <Compile Include="LogX.cs" />
+    <Compile Include="MathHelper\CircleHelper.cs" />
+    <Compile Include="MathHelper\SortHelper.cs" />
+    <Compile Include="MathHelper\SquareHelper.cs" />
+    <Compile Include="MathHelper\SectorHelper.cs" />
+    <Compile Include="Net\FtpHelper.cs" />
+    <Compile Include="Net\IPHelper.cs" />
+    <Compile Include="Net\PingHelper.cs" />
+    <Compile Include="Net\Telnet\BaseClient.cs" />
+    <Compile Include="Net\Telnet\BaseClientCancellable.cs" />
+    <Compile Include="Net\Telnet\ByteStreamHandler.cs" />
+    <Compile Include="Net\Telnet\ByteStreamHandlerCancellable.cs" />
+    <Compile Include="Net\Telnet\Client.cs" />
+    <Compile Include="Net\Telnet\ClientCancellable.cs" />
+    <Compile Include="Net\Telnet\Commands.cs" />
+    <Compile Include="Net\Telnet\IByteStream.cs" />
+    <Compile Include="Net\Telnet\IByteStreamHandler.cs" />
+    <Compile Include="Net\Telnet\INetworkStream.cs" />
+    <Compile Include="Net\Telnet\IsNotDeadCodeAttribute.cs" />
+    <Compile Include="Net\Telnet\ISocket.cs" />
+    <Compile Include="Net\Telnet\NetworkStream.cs" />
+    <Compile Include="Net\Telnet\Options.cs" />
+    <Compile Include="Net\Telnet\TcpByteStream.cs" />
+    <Compile Include="Net\Telnet\TcpClient.cs" />
+    <Compile Include="Net\Telnet\Telneter.cs" />
+    <Compile Include="Net\UDPHelper.cs" />
+    <Compile Include="Others\CNDate.cs" />
+    <Compile Include="Others\DataTableExtensions.cs" />
+    <Compile Include="Others\DecimalUtility.cs" />
+    <Compile Include="Others\EcanConvertToCh.cs" />
+    <Compile Include="Others\FormulaExpress.cs" />
+    <Compile Include="Others\ListExtensions.cs" />
+    <Compile Include="Others\PinYin.cs" />
+    <Compile Include="Others\SqlHelper.cs" />
+    <Compile Include="Security\Cryptography.cs" />
+    <Compile Include="Serializers\XmlHelper.cs" />
+    <Compile Include="Settings\UnsafeSetting.cs" />
+    <Compile Include="System\AutoItXHelper.cs" />
+    <Compile Include="System\CaptureHelper.cs" />
+    <Compile Include="System\ClipboardHelper.cs" />
+    <Compile Include="System\DisposeHelper.cs" />
+    <Compile Include="System\GCHelper.cs" />
+    <Compile Include="System\MouseHelper.cs" />
+    <Compile Include="System\OpenHelper.cs" />
+    <Compile Include="System\ProcessHelper.cs" />
+    <Compile Include="System\RegeditHelper.cs" />
+    <Compile Include="System\Resolution.cs" />
+    <Compile Include="System\ScreenHelper.cs" />
+    <Compile Include="System\StartupHelper.cs" />
+    <Compile Include="System\SystemInfoHelper.cs" />
+    <Compile Include="System\TaskManager.cs" />
+    <Compile Include="System\VolumeHelper.cs" />
+    <Compile Include="System\WindowsMessageHelper.cs" />
+    <Compile Include="System\WindowsSettingHelper.cs" />
+    <Compile Include="System\WindowsVersionHelper.cs" />
+    <Compile Include="Time\DateTimeHelper.cs" />
+    <Compile Include="Time\TimerHelper.cs" />
+    <Compile Include="WPF\Bindings\BindingHelper.cs" />
+    <Compile Include="WPF\Bindings\BindingProperty.cs" />
+    <Compile Include="WPF\ControlLibs\AppBarManager\AppBarAction.cs" />
+    <Compile Include="WPF\ControlLibs\AppBarManager\AppBarLocation.cs" />
+    <Compile Include="WPF\ControlLibs\AppBarManager\AppBarWindow.cs" />
+    <Compile Include="WPF\ControlLibs\DrawSelectedCanvas.cs" />
+    <Compile Include="WPF\ControlLibs\CustomGroupTreeViewItem.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\Class1.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\ImageButton.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\ScaleButton.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\ScaleImage.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\ScaleLabel.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\ScaleTextBox.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\ScaleViewManager.cs" />
+    <Compile Include="WPF\ControlLibs\ScaleControls\ScaleWindow.cs" />
+    <Compile Include="WPF\ControlLibs\SPDragCanvas.cs" />
+    <Compile Include="WPF\ControlLibs\WindowRenders\WindowControllerButton.cs" />
+    <Compile Include="WPF\ControlLibs\WindowRenders\WindowRendering.cs" />
+    <Compile Include="WPF\ControlLibs\WindowRenders\WindowTitle.xaml.cs">
+      <DependentUpon>WindowTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Converters\AddStringConverter.cs" />
+    <Compile Include="WPF\Converters\BoolConverter.cs" />
+    <Compile Include="WPF\Converters\DefautlValueTypeConverter.cs" />
+    <Compile Include="WPF\Converters\DoubleToIntConverter.cs" />
+    <Compile Include="WPF\Converters\DoubleToOneConverter.cs" />
+    <Compile Include="WPF\Converters\NullValueTypeConverter.cs" />
+    <Compile Include="WPF\Converters\TestConverter.cs" />
+    <Compile Include="WPF\Converters\VisibilityConverter.cs" />
+    <Compile Include="Data\RegexHelper.cs" />
+    <Compile Include="MathHelper\EllipseHelper.cs" />
+    <Compile Include="WPF\Extensions\EnumDescriptionExtension.cs" />
+    <Compile Include="WPF\Extensions\INotifyAll.cs" />
+    <Compile Include="WPF\Extensions\INotifyPropertyChangedHelper.cs" />
+    <Compile Include="WPF\Helpers\IEnumerableFilterHelper.cs" />
+    <Compile Include="WPF\Helpers\KeyHelper.cs" />
+    <Compile Include="WPF\Helpers\ObservableCollectionHelper.cs" />
+    <Compile Include="WPF\Helpers\UriHelper.cs" />
+    <Compile Include="WPF\Helpers\ClickHelper.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\BaseDialogNative.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\DummyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Data\LnkHelper.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\OpenDialogNative.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\OpenFileDialogEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WF\ControlLibs\Dialogs\OpenFileDialogEx.Designer.cs">
+      <DependentUpon>OpenFileDialogEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WF\ControlLibs\Dialogs\OpenFilesDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WF\ControlLibs\Dialogs\OpenFilesDialog.Designer.cs">
+      <DependentUpon>OpenFilesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WF\ControlLibs\Dialogs\OpenFloderDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WF\ControlLibs\Dialogs\OpenFloderDialog.Designer.cs">
+      <DependentUpon>OpenFloderDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WF\ControlLibs\Dialogs\WindowsHelper\ControlsID.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\WindowsHelper\Enums.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\WindowsHelper\NativeMethods.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\WindowsHelper\structs.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\WindowsHelper\SysListView32Helper.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\WindowsHelper\WindowHelper.cs" />
+    <Compile Include="Data\AssemblyHelper.cs" />
+    <Compile Include="Data\EnumHelper.cs" />
+    <Compile Include="Data\TypeHelper.cs" />
+    <Compile Include="Image\BitmapHelper.cs" />
+    <Compile Include="Data\FileHelper.cs" />
+    <Compile Include="Data\ByteHelper.cs" />
+    <Compile Include="Data\ClassInfoHelper.cs" />
+    <Compile Include="Image\Gif\AnimatedGifEncoder.cs" />
+    <Compile Include="Image\Gif\GifDecoder.cs" />
+    <Compile Include="Image\Gif\GifHelper.cs" />
+    <Compile Include="Image\Gif\LZWEncoder.cs" />
+    <Compile Include="Image\Gif\NeuQuant.cs" />
+    <Compile Include="Info\WeatherHelper.cs" />
+    <Compile Include="Input\CursorHelper.cs" />
+    <Compile Include="WF\ControlLibs\Dialogs\DialogHelper.cs" />
+    <Compile Include="Data\DirectoryHelper.cs" />
+    <Compile Include="Input\DragEventArgsHelper.cs" />
+    <Compile Include="Image\HandleImageHelper.cs" />
+    <Compile Include="Time\HighPrecisionTimerHelper.cs" />
+    <Compile Include="Net\HtmlHelper.cs" />
+    <Compile Include="Net\HttpHelper.cs" />
+    <Compile Include="Image\IconHelper.cs" />
+    <Compile Include="Linq\IEnumerableHelper.cs" />
+    <Compile Include="Linq\IListHelper.cs" />
+    <Compile Include="Input\InputHelper.cs" />
+    <Compile Include="Data\MD5Helper.cs" />
+    <Compile Include="Native\NativeHelper.cs" />
+    <Compile Include="Native\NativeMethods.cs" />
+    <Compile Include="Net\NetHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Data\SerializersHelper.cs" />
+    <Compile Include="Net\SocketHelper.cs" />
+    <Compile Include="Data\StreamHelper.cs" />
+    <Compile Include="Data\StringHelper.cs" />
+    <Compile Include="Data\SwitchHelper.cs" />
+    <Compile Include="Data\XmlHelper.cs" />
+    <Compile Include="WPF\ControlLibs\CustomTreeViewItem.cs" />
+    <Compile Include="WPF\ControlLibs\PressButton.xaml.cs">
+      <DependentUpon>PressButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ControlLibs\ToggleSwitch.cs" />
+    <Compile Include="WPF\ControlLibs\TopmostWindow.cs" />
+    <Compile Include="WPF\Converters\DoubleSpanConverter.cs" />
+    <Compile Include="WPF\Helpers\AminationHelpers.cs" />
+    <Compile Include="WPF\Helpers\BitmapSourceHelper.cs" />
+    <Compile Include="WPF\Helpers\BrushHelper.cs" />
+    <Compile Include="WPF\Helpers\DispatcherHelper.cs" />
+    <Compile Include="Linq\ExpressionHelper.cs" />
+    <Compile Include="WPF\Helpers\FindVisualHelper.cs" />
+    <Compile Include="WPF\Helpers\ImageSourceHelper.cs" />
+    <Compile Include="Base\INotifyOfInvocationListHelper.cs" />
+    <Compile Include="WPF\Helpers\MouseSliderHelper.cs" />
+    <Compile Include="WPF\Helpers\RichTextBoxHelper.cs" />
+    <Compile Include="WPF\Helpers\SelectorHelper.cs" />
+    <Compile Include="WPF\Helpers\TreeViewHelper.cs" />
+    <Compile Include="WPF\Helpers\UIElementHelper.cs" />
+    <Compile Include="Base\NotifyObject.cs" />
+    <Compile Include="WPF\Helpers\VSHelper.cs" />
+    <Compile Include="WPF\Helpers\WindowHelper.cs" />
+    <Compile Include="WPF\Mvvm\ViewModelLocationProvider.cs" />
+    <Compile Include="WPF\Mvvm\ViewModelLocator.cs" />
+    <Compile Include="WPF\ControlLibs\ViewTextControl.xaml.cs">
+      <DependentUpon>ViewTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\Validatas\KeepTrueValidationRule.cs" />
+    <Compile Include="WPF\Validatas\LengthValidataAttribute.cs" />
+    <Compile Include="WPF\Validatas\NullValidata.cs" />
+    <EmbeddedResource Include="WF\ControlLibs\Dialogs\OpenFileDialogEx.resx">
+      <DependentUpon>OpenFileDialogEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WF\ControlLibs\Dialogs\OpenFloderDialog.resx">
+      <DependentUpon>OpenFloderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Resources\Word.reg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="WPF\ControlLibs\PressButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\ControlLibs\ViewTextControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\ControlLibs\WindowRenders\WindowTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WPF\ControlLibs\ListBoxItem\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Unity">
+      <Version>5.10.2</Version>
+    </PackageReference>
+    <PackageReference Include="Unity.Abstractions">
+      <Version>4.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Unity.ServiceLocation">
+      <Version>5.10.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jiper", "Jiper.csproj", "{C993CE01-EBD0-4374-B15B-C84187F00337}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C993CE01-EBD0-4374-B15B-C84187F00337}.Debug|x86.ActiveCfg = Debug|x86
+		{C993CE01-EBD0-4374-B15B-C84187F00337}.Debug|x86.Build.0 = Debug|x86
+		{C993CE01-EBD0-4374-B15B-C84187F00337}.Release|x86.ActiveCfg = Release|x86
+		{C993CE01-EBD0-4374-B15B-C84187F00337}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB738CF9-62F5-4602-B8FE-3736EE4674FB}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,345 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:HeaderWindow"
+                    xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell">
+    <!--  标题栏中窗体控制按钮模板  -->
+    <ControlTemplate x:Key="CaptionButtonTemplate" TargetType="{x:Type local:CaptionButton}">
+        <Grid Height="20">
+            <Border x:Name="ButtonBackground"
+                    Background="{TemplateBinding Background}"
+                    BorderThickness="0"
+                    CornerRadius="{Binding Path=CornerRadius,
+                                           RelativeSource={RelativeSource TemplatedParent}}"
+                    Opacity="1">
+                <Border>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.6">
+                            <GradientStop Offset="0" Color="#77ffffff" />
+                            <GradientStop Offset="1" Color="#11ffffff" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+
+            <Border x:Name="ButtonEdgesBorder"
+                    BorderBrush="Black"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{Binding Path=CornerRadius,
+                                           RelativeSource={RelativeSource TemplatedParent}}"
+                    Opacity="1">
+
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect Direction="270"
+                                            ShadowDepth="0.75"
+                                            Softness="0.20"
+                                            Color="White" />
+                </Border.BitmapEffect>
+
+            </Border>
+
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="ButtonBackground" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="ButtonBackground" Property="Background" Value="#B2A7A6A2" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!--  标题栏中窗体控制按钮的基本样式  -->
+    <Style x:Key="CaptionButtonStyle" TargetType="{x:Type local:CaptionButton}">
+        <Setter Property="Background" Value="#00810606" />
+        <Setter Property="HoverBackground" Value="#B29EC2E9" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Lucida Console" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Width" Value="28" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template" Value="{StaticResource CaptionButtonTemplate}" />
+    </Style>
+
+    <!--  标题栏中帮助按钮样式  -->
+    <Style BasedOn="{StaticResource CaptionButtonStyle}"
+           TargetType="{x:Type local:HelpButton}"
+           x:Shared="False">
+        <Setter Property="BorderThickness" Value="1,1,0,1" />
+        <Setter Property="CornerRadius" Value="0,0,0,4" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Lucida Console" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Content" Value="?" />
+    </Style>
+
+    <!--  标题栏中最小化按钮样式  -->
+    <Style BasedOn="{StaticResource CaptionButtonStyle}"
+           TargetType="{x:Type local:MinimizeButton}"
+           x:Shared="False">
+        <Setter Property="Button.Content">
+            <Setter.Value>
+                <Image Width="12"
+                       Margin="0,4,0,0"
+                       Source="/HeaderWindow;component/Images/minimize.jpg" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="1,1,1,1" />
+        <Setter Property="CornerRadius" Value="0,0,0,4" />
+    </Style>
+
+    <!--  标题栏中最大化按钮样式  -->
+    <Style BasedOn="{StaticResource CaptionButtonStyle}"
+           TargetType="{x:Type local:MaximizeButton}"
+           x:Shared="False">
+        <Setter Property="BorderThickness" Value="0,1,1,1" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Grid>
+                    <Image Width="12" Source="/HeaderWindow;component/Images/maximize.png">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UserWindow}}}" Value="Maximized">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <Image Width="12" Source="/HeaderWindow;component/Images/restore.png">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UserWindow}}}" Value="Maximized">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Grid>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  标题栏中关闭按钮样式  -->
+    <Style BasedOn="{StaticResource CaptionButtonStyle}"
+           TargetType="{x:Type local:CloseButton}"
+           x:Shared="False">
+        <Setter Property="Background" Value="#889F7472" />
+        <Setter Property="HoverBackground" Value="#B2E55F59" />
+        <Setter Property="Width" Value="46" />
+        <Setter Property="Margin" Value="0,0,11,0" />
+        <Setter Property="BorderThickness" Value="0,1,1,1" />
+        <Setter Property="CornerRadius" Value="0,0,4,0" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Image Width="11" Source="/HeaderWindow;component/Images/close.png" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Color x:Key="MainColor">#FF595959</Color>
+    <SolidColorBrush x:Key="NormalBrush" Color="{StaticResource MainColor}" />
+
+    <Style x:Key="ButtonStyleToolItemWindow" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle x:Name="BackRect"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{TemplateBinding Background}"
+                                   RadiusX="2"
+                                   RadiusY="2"
+                                   Stroke="{TemplateBinding BorderBrush}"
+                                   StrokeThickness="0" />
+                        <Rectangle x:Name="PressedRect"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{DynamicResource BrushSelectedItemBackground}"
+                                   RadiusX="2"
+                                   RadiusY="2"
+                                   Stroke="{x:Null}"
+                                   StrokeThickness="0"
+                                   Visibility="Hidden" />
+                        <Rectangle x:Name="HoverRect"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{DynamicResource ButtonNormalBorder}"
+                                   Opacity="0.8"
+                                   RadiusX="2"
+                                   RadiusY="2"
+                                   Stroke="{x:Null}"
+                                   StrokeThickness="0"
+                                   Visibility="Hidden" />
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Width="Auto"
+                                          Height="Auto"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="HoverRect" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PressedRect" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="HoverRect" Property="Visibility" Value="Visible" />
+
+                            <Setter TargetName="HoverRect" Property="Opacity" Value="1" />
+                            <Setter TargetName="contentPresenter" Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:UserWindow}" x:Shared="False">
+
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="WindowStyle" Value="None" />
+
+        <Setter Property="shell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <shell:WindowChrome CaptionHeight="{Binding CaptionHeight,
+                                                            RelativeSource={RelativeSource FindAncestor,
+                                                                                           AncestorType={x:Type local:UserWindow}}}"
+                                    CornerRadius="{Binding CornerRadius,
+                                                           RelativeSource={RelativeSource FindAncestor,
+                                                                                          AncestorType={x:Type local:UserWindow}}}"
+                                    GlassFrameThickness="0"
+                                    ResizeBorderThickness="{Binding ResizeBorderThickness,
+                                                                    RelativeSource={RelativeSource FindAncestor,
+                                                                                                   AncestorType={x:Type local:UserWindow}}}" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:UserWindow}">
+                    <Border Background="#FF3c3c3c"
+                            BorderBrush="#FF3c3c3c"
+                            BorderThickness="{Binding WindowState,
+                                                      RelativeSource={RelativeSource AncestorType=local:UserWindow},
+                                                      Converter={x:Static local:EffectShowConverter.Converter},
+                                                      ConverterParameter=5}">
+
+
+                        <!--
+                            <Border.Effect>
+                            <local:BorderDropInEffectEffect BorderColor="Black"
+                            BorderHeight="{Binding ActualHeight,
+                            RelativeSource={RelativeSource AncestorType=local:UserWindow}}"
+                            BorderWidth="{Binding ActualWidth,
+                            RelativeSource={RelativeSource AncestorType=local:UserWindow}}"
+                            DropInWidth="10" />
+                            </Border.Effect>
+                        -->
+
+
+
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7"
+                                              Opacity="0.6"
+                                              ShadowDepth="10"
+                                              Color="#FF3c3c3c" />
+                        </Border.Effect>
+
+
+                        <Border BorderBrush="#FF3c3c3c" BorderThickness="{Binding WindowState, RelativeSource={RelativeSource AncestorType=local:UserWindow}, Converter={x:Static local:EffectShowConverter.Converter}, ConverterParameter=1}">
+                            <Grid>
+                                <Border BorderBrush="#FF333333" CornerRadius="{TemplateBinding CornerRadius}">
+                                    <Border.Background>
+                                        <LinearGradientBrush MappingMode="Absolute" StartPoint="0,0" EndPoint="0,30">
+                                            <GradientStop Offset="0" Color="#FF333333" />
+                                            <GradientStop Offset="1" Color="#FF3c3c3c" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+
+                                    <DockPanel>
+
+                                        <StackPanel x:Name="WindowHeader"
+                                                    Height="{TemplateBinding CaptionHeight}"
+                                                    HorizontalAlignment="Left"
+                                                    DockPanel.Dock="Top"
+                                                    Orientation="Horizontal">
+
+                                            <Button Width="24"
+                                                    Height="24"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    BorderBrush="{x:Null}"
+                                                    Command="{x:Static shell:SystemCommands.ShowSystemMenuCommand}"
+                                                    Focusable="False"
+                                                    Style="{DynamicResource ButtonStyleToolItemWindow}"
+                                                    shell:WindowChrome.IsHitTestVisibleInChrome="True">
+
+                                                <Image Width="16"
+                                                       Height="16"
+                                                       Source="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                        Path=Icon}"
+                                                       shell:WindowChrome.IsHitTestVisibleInChrome="True" />
+                                            </Button>
+
+                                            <ContentPresenter Content="{TemplateBinding TitleElement}" shell:WindowChrome.IsHitTestVisibleInChrome="True" />
+
+                                            <TextBlock Margin="100,0,0,0"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="White"
+                                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                      Path=Title}" />
+                                            <!--  Margin="{Binding ActualWidth ,RelativeSource={RelativeSource AncestorType=local:UserWindow},Converter={x:Static local:TextMarginConverter.Converter}}"  -->
+                                        </StackPanel>
+
+                                        <!--  如果你在Template中使用AdornedElementPlaceholder，那么必须加上这个装饰器,否则所有的装饰器都讲获取不到Layer  -->
+                                        <AdornerDecorator>
+                                            <ContentPresenter Content="{TemplateBinding Content}" />
+                                        </AdornerDecorator>
+                                    </DockPanel>
+
+                                </Border>
+
+                                <StackPanel HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal">
+                                    <local:MinimizeButton x:Name="minimizeButton" />
+                                    <local:MaximizeButton x:Name="MaximizeButton" />
+                                    <local:CloseButton x:Name="closeButton" Command="{x:Static shell:SystemCommands.CloseWindowCommand}" />
+                                </StackPanel>
+                            </Grid>
+
+                        </Border>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="MaximizeButton" Property="IsEnabled" Value="False" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
